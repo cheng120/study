@@ -29,13 +29,13 @@ $api->version('v1', function ($api) {
         $api->group(['middleware'=>['role:admin']], function ($api) {
             #管理员可用接口
             #用户列表api
-            $api->get('/users_list','AdminApiController@usersList');
+            $api->get('/users_list','UserApiController@usersList');
             #添加用户api
-            $api->post('/add_user','AdminApiController@addUser');
+            $api->post('/add_user','UserApiController@addUser');
             #编辑用户api
-            $api->post('/edit_user','AdminApiController@editUser');
+            $api->post('/edit_user','UserApiController@editUser');
             #删除用户api
-            $api->post('/del_user','AdminApiController@delUser');
+            $api->post('/del_user','UserApiController@delUser');
             #上传头像api
             $api->post('/upload_avatar','UserApiController@uploadAvatar');
 

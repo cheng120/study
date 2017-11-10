@@ -11,7 +11,7 @@ namespace App\Http\Controllers\ForwardApi;
 
 use App\Http\Controllers\ApiBaseController;
 use App\Model\UserModel;
-use Illuminate\Http\Request;
+use Dingo\Api\Http\Request;
 
 class UserApiController extends ApiBaseController
 {
@@ -63,5 +63,14 @@ class UserApiController extends ApiBaseController
 
             $this->reJson($msg);
         }
+    }
+
+    /*
+     * 用户列标
+     */
+    public function userlist(Request $request)
+    {
+        $respose = array("test");
+        return $respose;
     }
 }
