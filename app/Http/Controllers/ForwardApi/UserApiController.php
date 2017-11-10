@@ -68,7 +68,7 @@ class UserApiController extends ApiBaseController
     /*
      * 用户列标
      */
-    public function userlist(Request $request)
+    public function usersList(Request $request)
     {
         $respose = array("test");
         return $respose;
