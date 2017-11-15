@@ -29,4 +29,5 @@ class Controller extends BaseController
     {
         \CustomLog::getLogger($file,$type)->info($msg);
     }
+
 }

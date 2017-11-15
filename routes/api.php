@@ -31,9 +31,9 @@ $api->version('v1', function ($api) {
         #用户列表api
         $api->get('/users_list','UserApiController@usersList');
         #添加用户api
-        $api->post('/add_user','UserApiController@addUser');
+        $api->post('/regUser','UserApiController@regUser');
         #编辑用户api
-        $api->post('/edit_user','UserApiController@editUser');
+        $api->post('/login','UserApiController@userLogin');
         #删除用户api
         $api->post('/del_user','UserApiController@delUser');
         #上传头像api

@@ -55,12 +55,16 @@ class UserModel extends ModelBase{
         try{
             $res = $this->DBobj->insertGetId($data);
         }catch(\Exception $e){
+            $res = false;
             $this->write_log("执行参数:".json_encode($data),"usermodel",'warning');
             $this->write_log($e->getMessage(),"usermodel",'warning');
         }
         return $res;
     }
 
+    /*
+     * 验证用户是否已经存在
+     */
     /*
      * 测试
      */
