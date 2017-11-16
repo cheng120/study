@@ -51,7 +51,7 @@ class UserApiController extends ApiBaseController
         if($this->verStrHasCn($username)){
             $msg = array(
                 "msg"=>"密码不能少于6位",
-                "code"=>10005,
+                "code"=>10006,
                 "debug"=>"",
             );
             return $this->reJson($msg);
@@ -102,7 +102,7 @@ class UserApiController extends ApiBaseController
         $username = $request->input("username");
         $userInfo = $userModel->getUser(array("username"=>$username,"password"=>$password));
         if($userInfo){
-            $log_res = $this->reflashLoginfo();
+            $log_res = $this->reflashLoginfo($userInfo['id']);
             if(!$log_res){
                 $msg = array(
                     "code"=>10001,

@@ -67,29 +67,54 @@ class ApiBaseController extends BaseController
      * 更新登陆状态
      *
      */
-    public function reflashLoginfo($uid,$source)
+    public function reflashLoginfo($uid,$source=1)
     {
         $userModel = new UserModel();
         //pc
         if($source == 1){
             $userInfo = $userModel->getUser(array('id'=>$uid));
             if($userInfo){
-                //日期_id key
-                $save_sess_res = session([date('Ymd').'_'.$userInfo['id']=>$userInfo]);
+                //计算等级 获取待更新数据
+                $up_date = $this->userLevelUp($userInfo);
+                $up_date['lastlogintime'] = time();
+                //session_KEY
+                $key = date('Ymd').'_'.$userInfo['id'];
+                session([$key=>$userInfo]);
+                $save_sess_res  =session($key);
+
                 if( $save_sess_res){
                     $this->write_log("uid:".$uid."reflash success",$this->logInlog);
                     return true;
                 }else{
-                    $this->write_log("uid:".$uid."reflash failed",$this->logInlog);
+                    $this->write_log("uid:".$uid."reflash failed. save time failed",$this->logInlog);
                     return false;
                 }
             }else{
-                $this->write_log("uid:".$uid."reflash failed",$this->logInlog);
+                $this->write_log("uid:".$uid."reflash failed. user unknow ",$this->logInlog);
 
                 return false;
             }
         }else{
 
+        }
+    }
+
+    /*
+     * 账号升级
+     */
+    public function userLevelUp($userInfo)
+    {
+        if((int)date("Ymd") - date("Ymd",$userInfo['lastlogintime']) > 1){
+            if($userInfo['expire']+=100>pow($userInfo['level'],10)){
+                $level = $userInfo['level']+1;
+            }
+            $data = array(
+                "level"=>$level?$level:$userInfo['level'],
+                "expire"=>$userInfo['expire'],
+            );
+            return $data;
+        }else{
+            return false;
         }
     }
 }

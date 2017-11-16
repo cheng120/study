@@ -52,6 +52,7 @@ return [
             'prefix' => 'cheng_',
             'strict' => true,
             'engine' => null,
+
         ],
 
         'pgsql' => [
@@ -103,7 +104,6 @@ return [
     | such as APC or Memcached. Laravel makes it easy to dig right in.
     |
     */
-
     'redis' => [
 
         'client' => 'predis',

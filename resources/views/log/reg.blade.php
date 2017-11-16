@@ -29,7 +29,7 @@
                         <span class="am-input-group-label log-icon am-radius"><i class="am-icon-lock am-icon-sm am-icon-fw"></i></span>
                     </div>
                     <br>
-                    <button type="submit" class="am-btn am-btn-primary am-btn-block am-btn-lg am-radius am-animation-slide-bottom log-animation-delay-b">注 册</button>
+                    <button type="submit" class="am-btn am-btn-primary am-btn-block am-btn-lg am-radius am-animation-slide-bottom log-animation-delay-b" onclick="reg()">注 册</button>
                     <br>
                     <div class="am-btn-group am-animation-slide-bottom log-animation-delay-b">
                         <p>支持第三方注册</p>
@@ -48,7 +48,7 @@
 
 @section('js')
     <script>
-        jump_url('jump','click', '{{ route('f_login') }}');
+        jump_url('jump','click', '{{ route('f_reg') }}');
 
         function reg(){
             var username = $("#username").val();
