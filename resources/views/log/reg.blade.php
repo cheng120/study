@@ -5,7 +5,7 @@
             <h1><a href="/">Amaze UI</a> </h1>
         </div>
         <div class="log-re">
-            <button type="button" class="am-btn am-btn-default am-radius log-button">注册</button>
+            <button type="button" id="jump" class="am-btn am-btn-default am-radius log-button" onclick="jump_url()">登  陆</button>
         </div>
     </header>
     <div class="log">
@@ -48,7 +48,7 @@
 
 @section('js')
     <script>
-        jump_url('jump','click', '{{ route('f_reg') }}');
+        jump_url('jump','click', '{{ route('f_login') }}');
 
         function reg(){
             var username = $("#username").val();
@@ -86,8 +86,8 @@
                 dataType:"json",
                 success:function(d){
                     am_alert(d.msg);
-                    if(d.code == 1000){
-                        jump_url("/");
+                    if(d.code == 10000){
+                        location.href = "{{ route('login/log') }}";
                     }
                 }
             });

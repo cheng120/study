@@ -7,7 +7,7 @@
             <h1><a href="/">Amaze UI</a> </h1>
         </div>
         <div class="log-re">
-            <button type="button" id="jump" class="am-btn am-btn-default am-radius log-button">登 录</button>
+            <button type="button" id="jump" class="am-btn am-btn-default am-radius log-button">注  册</button>
         </div>
     </header>
     <div class="log">
@@ -71,8 +71,8 @@
                 dataType:"json",
                 success:function(d){
                     am_alert(d.msg);
-                    if(d.code == 1000){
-                        jump_url("/");
+                    if(d.code == 10000){
+                        location.href = "{{ url('blog/index') }}";
                     }
                 }
             });

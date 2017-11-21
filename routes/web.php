@@ -36,4 +36,4 @@ Route::get('login/log','Forward\LoginController@login')->name('f_login');
 Route::get('login/reg','Forward\LoginController@reg')->name('f_reg');
 
 //post
-Route::post('login/regs','Forward\LoginController@do_reg')->name('f_regs');
+//Route::post('login/regs','Forward\LoginController@do_reg')->name('f_regs');
