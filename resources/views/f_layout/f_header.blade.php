@@ -23,11 +23,22 @@
 </head>
 
 <body id="blog-article-sidebar">
-<!-- header start -->
-<header class="am-g am-g-fixed blog-fixed blog-text-center blog-header">
-    <div class="am-u-sm-8 am-u-sm-centered">
-        <img width="200" src="http://s.amazeui.org/media/i/brand/amazeui-b.png" alt="Amaze UI Logo"/>
-        <h2 class="am-hide-sm-only">中国首个开源 HTML5 跨屏前端框架</h2>
-    </div>
+<header>
+
 </header>
-<body>
+<!-- header start -->
+<header class="am-g am-g-fixed blog-fixed blog-text-center blog-header " style="background: red;padding-top: 15.2px">
+    <div class="am-u-sm-1">
+        <h1 class=""><a href="/">cheng</a> </h1>
+    </div>
+
+        <div class="am-u-sm-11">
+            <a href="{{url('login/reg')}}"><button type="button" id="jump" class="am-btn am-btn-default am-radius log-button  am-fr" onclick="jump_url()">注  册</button></a>
+            <div class=" am-fr">&nbsp;&nbsp;&nbsp;&nbsp;</div>
+            <a href="{{url('login/log')}}"><button type="button" id="jump" class="am-btn am-btn-default am-radius log-button  am-fr" onclick="jump_url()">登  陆</button></a>
+        </div>
+
+
+
+
+</header>

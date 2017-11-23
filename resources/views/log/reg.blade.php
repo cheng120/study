@@ -87,7 +87,7 @@
                 success:function(d){
                     am_alert(d.msg);
                     if(d.code == 10000){
-                        location.href = "{{ route('login/log') }}";
+                        location.href = "{{ url('login/log') }}";
                     }
                 }
             });

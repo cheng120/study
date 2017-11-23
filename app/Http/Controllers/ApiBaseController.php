@@ -8,7 +8,9 @@
 
 namespace App\Http\Controllers;
 use App\Model\UserModel;
-use Dingo\Api\Contract\Http\Request;
+use Dingo\Api\Http\Request;
+use Illuminate\Support\Facades\Cookie;
+
 use Illuminate\Routing\Controller as BaseController;
 
 class ApiBaseController extends BaseController
@@ -18,10 +20,13 @@ class ApiBaseController extends BaseController
     private $logBaseDir = '';
     public $userInfo = "";
     private $logInlog = "apiLogin";
+    private $ip = "";
 
     public function __construct(Request $request)
     {
         $this-> logBaseDir =  storage_path().'/logs/';
+        $this->ip = $request->getClientIp();
+
     }
 
     protected function reJson($data)
@@ -72,27 +77,52 @@ class ApiBaseController extends BaseController
         $userModel = new UserModel();
         //pc
         if($source == 1){
-            $userInfo = $userModel->getUser(array('id'=>$uid));
-            if($userInfo){
-                //计算等级 获取待更新数据
-                $up_date = $this->userLevelUp($userInfo);
-                $up_date['lastlogintime'] = time();
-                //session_KEY
-                $key = date('Ymd').'_'.$userInfo['id'];
-                session([$key=>$userInfo]);
-                $save_sess_res  =session($key);
+            //cookie key
+            $sskey = Cookie::get("SSKEY");
+            if($sskey){
+                $old_userInfo= session($sskey);
+            }else{
+                $old_userInfo= array();
+            }
+            //如果有SSK验证IP
+            if($old_userInfo){
+                if($old_userInfo['ip_address'] != $this->ip){
+                    session($sskey,"");
+                    Cookie::make("SSKEY","",0);
+                    $this->write_log("uid:".$uid."reflash failed . ip error ".$old_userInfo['ip']." to ".$this->ip,$this->logInlog);
 
-                if( $save_sess_res){
-                    $this->write_log("uid:".$uid."reflash success",$this->logInlog);
-                    return true;
-                }else{
-                    $this->write_log("uid:".$uid."reflash failed. save time failed",$this->logInlog);
                     return false;
                 }
             }else{
-                $this->write_log("uid:".$uid."reflash failed. user unknow ",$this->logInlog);
+                //session_KEY
+                $key = date('Ymd').'_'.$uid;
+                $sskey = md5($key);
+                $res = Cookie::make("SSKEY", $sskey, 3600*24);
+                var_dump($res);exit;
+                $userInfo = $userModel->getUser(array('id'=>$uid));
+                if($userInfo){
+                    //计算等级 获取待更新数据
+                    $up_date = $this->userLevelUp($userInfo);
+                    $up_date['lastlogintime'] = time();
 
-                return false;
+
+                    $userInfo['ip_address'] = $this->ip;
+
+                    session([$key=>$userInfo]);
+                    $save_sess_res  =session($key);
+
+                    if( $save_sess_res){
+                        $this->write_log("uid:".$uid."reflash success",$this->logInlog);
+                        return true;
+                    }else{
+                        $this->write_log("uid:".$uid."reflash failed. save time failed",$this->logInlog);
+                        return false;
+                    }
+                }else{
+                    $this->write_log("uid:".$uid."reflash failed. user unknow ",$this->logInlog);
+
+                    return false;
+                }
             }
         }else{
 

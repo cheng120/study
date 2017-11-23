@@ -2,6 +2,7 @@
 @extends('f_layout.base_layout')
 
 @section('nav')
+
     <!--nav start -->
     <hr>
     <nav class="am-g am-g-fixed blog-fixed blog-nav">
@@ -44,7 +45,7 @@
         <div data-am-widget="slider" class="am-slider am-slider-b1" data-am-slider='{&quot;controlNav&quot;:false}' >
             <ul class="am-slides">
                 <li>
-                    <img src="assets/i/b1.jpg">
+                    <img src="{{ URL::asset('/assets/css/i/assets/i/b1.')}}">
                     <div class="blog-slider-desc am-slider-desc ">
                         <div class="blog-text-center blog-slider-con">
                             <span><a href="" class="blog-color">Article &nbsp;</a></span>
@@ -57,7 +58,7 @@
                     </div>
                 </li>
                 <li>
-                    <img src="assets/i/b2.jpg">
+                    <img src="{{ URL::asset('/assets/css/i/assets/i/b2.')}}">
                     <div class="am-slider-desc blog-slider-desc">
                         <div class="blog-text-center blog-slider-con">
                             <span><a href="" class="blog-color">Article &nbsp;</a></span>
@@ -69,7 +70,7 @@
                     </div>
                 </li>
                 <li>
-                    <img src="assets/i/b3.jpg">
+                    <img src="{{ URL::asset('/assets/css/i/assets/i/b3.')}}">
                     <div class="am-slider-desc blog-slider-desc">
                         <div class="blog-text-center blog-slider-con">
                             <span><a href="" class="blog-color">Article &nbsp;</a></span>
@@ -81,7 +82,7 @@
                     </div>
                 </li>
                 <li>
-                    <img src="assets/i/b2.jpg">
+                    <img src="{{ URL::asset('/assets/css/i/assets/i/b2.')}}">
                     <div class="am-slider-desc blog-slider-desc">
                         <div class="blog-text-center blog-slider-con">
                             <span><a href="" class="blog-color">Article &nbsp;</a></span>
@@ -106,7 +107,7 @@
 
             <article class="am-g blog-entry-article">
                 <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
-                    <img src="assets/i/f10.jpg" alt="" class="am-u-sm-12">
+                    <img src="{{ URL::asset('/assets/css/i/assets/i/f10.')}}" alt="" class="am-u-sm-12">
                 </div>
                 <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
                     <span><a href="" class="blog-color">article &nbsp;</a></span>
@@ -121,7 +122,7 @@
 
             <article class="am-g blog-entry-article">
                 <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
-                    <img src="assets/i/f6.jpg" alt="" class="am-u-sm-12">
+                    <img src="{{ URL::asset('/assets/css/i/assets/i/f6.')}}" alt="" class="am-u-sm-12">
                 </div>
                 <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
                     <span><a href="" class="blog-color">article&nbsp;</a></span>
@@ -136,7 +137,7 @@
 
             <article class="am-g blog-entry-article">
                 <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
-                    <img src="assets/i/f12.jpg" alt="" class="am-u-sm-12">
+                    <img src="{{ URL::asset('/assets/css/i/assets/i/f12.')}}" alt="" class="am-u-sm-12">
                 </div>
                 <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
                     <span><a href="" class="blog-color">article&nbsp;</a></span>
@@ -151,7 +152,7 @@
 
             <article class="am-g blog-entry-article">
                 <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
-                    <img src="assets/i/f22.jpg" alt="" class="am-u-sm-12">
+                    <img src="{{ URL::asset('/assets/css/i/assets/i/f22.')}}" alt="" class="am-u-sm-12">
                 </div>
                 <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
                     <span><a href="" class="blog-color">article&nbsp;</a></span>
@@ -166,7 +167,7 @@
 
             <article class="am-g blog-entry-article">
                 <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
-                    <img src="assets/i/f18.jpg" alt="" class="am-u-sm-12">
+                    <img src="{{ URL::asset('/assets/css/i/assets/i/f18.')}}" alt="" class="am-u-sm-12">
                 </div>
                 <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
                     <span><a href="" class="blog-color">article&nbsp;</a></span>
@@ -181,7 +182,7 @@
 
             <article class="am-g blog-entry-article">
                 <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
-                    <img src="assets/i/f20.jpg" alt="" class="am-u-sm-12">
+                    <img src="{{ URL::asset('/assets/css/i/assets/i/f20.')}}" alt="" class="am-u-sm-12">
                 </div>
                 <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
                     <span><a href="" class="blog-color">article&nbsp;</a></span>
@@ -196,7 +197,7 @@
 
             <article class="am-g blog-entry-article">
                 <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
-                    <img src="assets/i/f19.jpg" alt="" class="am-u-sm-12">
+                    <img src="{{ URL::asset('/assets/css/i/assets/i/f19.')}}" alt="" class="am-u-sm-12">
                 </div>
                 <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
                     <span><a href="" class="blog-color">article&nbsp;</a></span>
