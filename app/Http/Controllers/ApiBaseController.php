@@ -77,28 +77,16 @@ class ApiBaseController extends BaseController
         $userModel = new UserModel();
         //pc
         if($source == 1){
-            //cookie key
-            $sskey = Cookie::get("SSKEY");
-            if($sskey){
-                $old_userInfo= session($sskey);
-            }else{
-                $old_userInfo= array();
-            }
+            $old_userInfo= session()->get("userinfo");
             //如果有SSK验证IP
             if($old_userInfo){
                 if($old_userInfo['ip_address'] != $this->ip){
-                    session($sskey,"");
-                    Cookie::make("SSKEY","",0);
+                    session()->flush();
                     $this->write_log("uid:".$uid."reflash failed . ip error ".$old_userInfo['ip']." to ".$this->ip,$this->logInlog);
-
                     return false;
                 }
             }else{
                 //session_KEY
-                $key = date('Ymd').'_'.$uid;
-                $sskey = md5($key);
-                $res = Cookie::make("SSKEY", $sskey, 3600*24);
-                var_dump($res);exit;
                 $userInfo = $userModel->getUser(array('id'=>$uid));
                 if($userInfo){
                     //计算等级 获取待更新数据
@@ -108,8 +96,9 @@ class ApiBaseController extends BaseController
 
                     $userInfo['ip_address'] = $this->ip;
 
-                    session([$key=>$userInfo]);
-                    $save_sess_res  =session($key);
+                    session(['userinfo'=>$userInfo]);
+                    $save_sess_res  =session()->get('userinfo');
+
 
                     if( $save_sess_res){
                         $this->write_log("uid:".$uid."reflash success",$this->logInlog);

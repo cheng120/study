@@ -31,7 +31,10 @@
     <div class="am-u-sm-1">
         <h1 class=""><a href="/">cheng</a> </h1>
     </div>
-
+        @php
+            $userInfo = session("userInfo");
+            dump($userInfo);
+        @endphp
         <div class="am-u-sm-11">
             <a href="{{url('login/reg')}}"><button type="button" id="jump" class="am-btn am-btn-default am-radius log-button  am-fr" onclick="jump_url()">注  册</button></a>
             <div class=" am-fr">&nbsp;&nbsp;&nbsp;&nbsp;</div>

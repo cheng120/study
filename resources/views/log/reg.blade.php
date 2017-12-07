@@ -13,14 +13,14 @@
             <div class="am-u-lg-3 am-u-md-6 am-u-sm-8 am-u-sm-centered log-content">
                 <h1 class="log-title am-animation-slide-top">AmazeUI</h1>
                 <br>
-                <form class="am-form" id="log-form">
+                <form class="am-form" id="log-form" >
                     <div class="am-input-group am-radius am-animation-slide-left">
                         <input type="email" id="username" class="am-radius" data-validation-message="请输入正确邮箱地址" placeholder="邮箱" required/>
                         <span class="am-input-group-label log-icon am-radius"><i class="am-icon-user am-icon-sm am-icon-fw"></i></span>
                     </div>
                     <br>
                     <div class="am-input-group am-animation-slide-left log-animation-delay">
-                        <input type="password" id="password" class="am-form-field am-radius log-input" placeholder="密码" minlength="11" required>
+                        <input type="password" id="password" class="am-form-field am-radius log-input" placeholder="密码" minlength="6" required>
                         <span class="am-input-group-label log-icon am-radius"><i class="am-icon-lock am-icon-sm am-icon-fw"></i></span>
                     </div>
                     <br>
@@ -29,7 +29,7 @@
                         <span class="am-input-group-label log-icon am-radius"><i class="am-icon-lock am-icon-sm am-icon-fw"></i></span>
                     </div>
                     <br>
-                    <button type="submit" class="am-btn am-btn-primary am-btn-block am-btn-lg am-radius am-animation-slide-bottom log-animation-delay-b" onclick="reg()">注 册</button>
+                    <button type="button" class="am-btn am-btn-primary am-btn-block am-btn-lg am-radius am-animation-slide-bottom log-animation-delay-b" onclick="reg()">注 册</button>
                     <br>
                     <div class="am-btn-group am-animation-slide-bottom log-animation-delay-b">
                         <p>支持第三方注册</p>
@@ -54,7 +54,8 @@
             var username = $("#username").val();
             var password = $("#password").val();
             var repassword = $("#repassword").val();
-            var url = "{{ url('api/regUser') }}";
+            var token = "{{ csrf_token()}}";
+            var url = "{{ url('log/regUser') }}";
             if(!username){
                 am_alert("请填写用户名");
                 return false;
@@ -78,6 +79,7 @@
             var data = {
                 username:username,
                 password:password,
+                _token : token
             }
             $.ajax({
                 type:'POST',

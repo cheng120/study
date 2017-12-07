@@ -63,8 +63,24 @@ class UserModel extends ModelBase{
     }
 
     /*
-     * 验证用户是否已经存在
+     * update user
+     * 更新信息
+     * @username
+     * @password
+     *
      */
+    public function saveUser($uid,$param)
+    {
+        try{
+            $res = $this->DBobj->where('id',$uid)->update($param);
+        }catch(\Exception $e){
+            $res = false;
+            $this->write_log("执行参数:".json_encode($param),"usermodel",'warning');
+            $this->write_log($e->getMessage(),"usermodel",'warning');
+        }
+        return $res;
+    }
+
     /*
      * 测试
      */

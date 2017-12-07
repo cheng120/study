@@ -26,7 +26,7 @@
                         <span class="am-input-group-label log-icon am-radius"><i class="am-icon-lock am-icon-sm am-icon-fw"></i></span>
                     </div>
                     <br>
-                    <input type="hidden" name="_token" value="{{csrf_token()}}">
+                    <input type="hidden" name="_token" value="{{csrf_token()}}" id="csrf">
                     <button type="button" class="am-btn am-btn-primary am-btn-block am-btn-lg am-radius am-animation-slide-bottom log-animation-delay " onclick="login()">登陆</button>
                     <p class="am-animation-slide-bottom log-animation-delay"><a href="#">忘记密码?</a></p>
                     <div class="am-btn-group  am-animation-slide-bottom log-animation-delay-b">
@@ -46,12 +46,13 @@
 @endsection
 @section('js')
     <script>
-        jump_url('jump','click', '{{ route('f_login') }}');
+        jump_url('jump','click', '{{ route('f_reg') }}');
 
         function login(){
             var username = $("#username").val();
             var password = $("#password").val();
-            var url = "{{ url('api/login') }}";
+            var csrf = $("#csrf").val();
+            var url = "{{ route('do_log') }}";
             if(!username){
                 am_alert("请填写用户名");
                 return false;
@@ -63,6 +64,7 @@
             var data = {
                 username:username,
                 password:password,
+                _token : csrf,
             }
             $.ajax({
                 type:'POST',

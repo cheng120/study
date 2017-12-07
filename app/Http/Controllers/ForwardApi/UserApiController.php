@@ -12,6 +12,7 @@ namespace App\Http\Controllers\ForwardApi;
 use App\Http\Controllers\ApiBaseController;
 use App\Model\UserModel;
 use Dingo\Api\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class UserApiController extends ApiBaseController
 {
@@ -50,7 +51,7 @@ class UserApiController extends ApiBaseController
         }
         if($this->verStrHasCn($username)){
             $msg = array(
-                "msg"=>"密码不能少于6位",
+                "msg"=>"用户名不能包涵中文",
                 "code"=>10006,
                 "debug"=>"",
             );
@@ -117,6 +118,7 @@ class UserApiController extends ApiBaseController
                 "debug"=>"",
             );
         }
+
         return $this->reJson($msg);
     }
 }
